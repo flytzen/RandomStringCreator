@@ -1,15 +1,13 @@
 using System;
 using System.Collections.Generic;
-using System.Collections.Concurrent;
-using System.Linq;
-using System.Threading;
 using System.Security.Cryptography;
 
 
 namespace RandomStringCreator 
 {
-    internal class RandomByteProvider 
+    internal class RandomByteProvider : IDisposable
     {
+        bool disposed = false;
         private IEnumerator<byte> enumerator;
         object locker = new Object();
         private readonly int bufferLength;
@@ -44,7 +42,7 @@ namespace RandomStringCreator
 
         private IEnumerable<byte> GetBytes()
         {
-            // http://stackoverflow.com/questions/38632735/rngcryptoserviceprovider-in-net-core
+            // 
             // TODO utilise IDisposable
             // Gives BCryptGenRandom on Windows and 
             var bytes = new byte[this.bufferLength];
@@ -60,5 +58,24 @@ namespace RandomStringCreator
                 }
             }
         }   
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this); 
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposed)
+                return; 
+
+            if (this.cryptoGen != null) 
+            {
+                this.cryptoGen.Dispose();
+            }
+
+            disposed = true;
+        }
     }
 }

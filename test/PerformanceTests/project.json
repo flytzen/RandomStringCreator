@@ -10,7 +10,7 @@
       "type": "platform",
       "version": "1.0.0"
     },
-    "RandomStringCreator": "1.0.0-*"
+    "RandomStringCreator": "0.2.0-*"
   },
 
   "frameworks": {

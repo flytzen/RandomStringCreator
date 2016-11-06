@@ -15,10 +15,10 @@
 
     public class GenerationTests
     {
-        private Generator standardGenerator = new Generator();
-        private Generator buffer1024Generator = new Generator(1024);
-        private Generator buffer4096Generator = new Generator(4096);
-        private Generator buffer100000Generator = new Generator(100000);
+        private StringCreator standardGenerator = new StringCreator();
+        private StringCreator buffer1024Generator = new StringCreator(1024);
+        private StringCreator buffer4096Generator = new StringCreator(4096);
+        private StringCreator buffer100000Generator = new StringCreator(100000);
 
         public GenerationTests()
         {
@@ -33,7 +33,16 @@
         [Benchmark]
         public string GenerateIndividually()
         {
-           return new Generator().Get(6);
+           return new StringCreator().Get(6);
+        }
+
+        [Benchmark]
+        public string GenerateIndividuallyWithUsing()
+        {
+           using (var generator = new StringCreator()) 
+           {
+                return generator.Get(6);
+           }
         }
 
         [Benchmark]

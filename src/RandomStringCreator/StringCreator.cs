@@ -3,10 +3,12 @@
     using System;
     using System.Linq;
 
-    public class Generator
+    public class StringCreator : IDisposable
     {
         private const string DefaultValid = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
         private const int DefaultBufferLength = 128;
+
+        private bool disposed = false;
 
         private readonly string valid;
 
@@ -14,17 +16,17 @@
 
         private RandomByteProvider byteProvider => this.lazyByteProvider.Value;
 
-        public Generator() : this(DefaultValid, DefaultBufferLength)
+        public StringCreator() : this(DefaultValid, DefaultBufferLength)
         {
         }
 
-        public Generator(string valid) : this(valid, DefaultBufferLength)
+        public StringCreator(string valid) : this(valid, DefaultBufferLength)
         {}
 
-        public Generator(int bufferLength) : this(DefaultValid, bufferLength)
+        public StringCreator(int bufferLength) : this(DefaultValid, bufferLength)
         {}
 
-        public Generator(string valid, int bufferLength)
+        public StringCreator(string valid, int bufferLength)
         {
             // TODO: check that "valid" only contains ascii chars
             this.valid = valid;
@@ -39,8 +41,27 @@
         
         private char[] GetChars(int length)
         {
-            // http://stackoverflow.com/questions/32932679/using-rngcryptoserviceprovider-to-generate-random-string
+            // 
             return this.byteProvider.Bytes().Select(b => (char)b).Where(c => this.valid.Contains(c)).Take(length).ToArray();
+        }
+
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this); 
+        }
+
+        protected virtual void Dispose(bool disposing)
+        {
+            if (disposed)
+                return; 
+
+            if (this.lazyByteProvider.IsValueCreated && this.lazyByteProvider.Value != null) 
+            {
+                this.lazyByteProvider.Value.Dispose();
+            }
+
+            disposed = true;
         }
     }
 }
