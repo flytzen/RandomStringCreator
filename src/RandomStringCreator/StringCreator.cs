@@ -33,7 +33,7 @@
             this.lazyByteProvider = new Lazy<RandomByteProvider>(() => new RandomByteProvider(bufferLength));
         }
 
-        public string Get(int length)
+        public virtual string Get(int length)
         {
             var chars = this.GetChars(length);
             return new string(chars);
