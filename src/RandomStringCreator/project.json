@@ -8,7 +8,7 @@
   "packOptions": {
     "summary": "Create random strings for use as IDs etc. Uses crypto APIs rather than Random to avoid collisions from concurrent invocations.",
     "owners": [
-      "Frans Lytzen"
+      "flytzen"
     ],
     "releaseNotes": "Initial version",
     "projectUrl": "https://github.com/flytzen/RandomStringCreator",
