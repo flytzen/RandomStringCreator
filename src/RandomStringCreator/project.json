@@ -1,5 +1,5 @@
 ﻿{
-  "version": "0.2.0-*",
+  "version": "1.0.0-*",
   "Title": "Random String Creator",
   "description": "Create cryptographically random strings for use as IDs etc",
   "authors": [
