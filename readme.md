@@ -4,7 +4,7 @@ It uses crypto APIs, not Random, to avoid any risk of the same string being retu
 
 # Installation
 ```
-Install-Package Install-Package RandomStringCreator
+Install-Package RandomStringCreator
 ```
 
 # Usage
