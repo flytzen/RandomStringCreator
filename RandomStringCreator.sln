@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.26228.4
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RandomStringCreator", "src\RandomStringCreator\RandomStringCreator.csproj", "{6D894AD4-3B53-4B89-A50F-C69F019B72FD}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PerformanceTests", "test\PerformanceTests\PerformanceTests.csproj", "{56FFA294-7A34-4C29-9E7E-7A7BEA631404}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PerformanceTests", "PerformanceTests\PerformanceTests.csproj", "{56FFA294-7A34-4C29-9E7E-7A7BEA631404}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests", "test\Tests\Tests.csproj", "{F3E659FB-346C-4813-BA70-C7F7E068DCB8}"
 EndProject

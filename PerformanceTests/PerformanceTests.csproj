@@ -10,7 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\RandomStringCreator\RandomStringCreator.csproj" />
+    <ProjectReference Include="..\src\RandomStringCreator\RandomStringCreator.csproj" />
   </ItemGroup>
 
 </Project>
