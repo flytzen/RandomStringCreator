@@ -1,0 +1,27 @@
+trigger:
+  - master
+  - develop
+
+variables:
+  buildConfiguration: Release
+
+pool:
+  vmImage: 'vs2017-win2016'
+
+steps:
+
+- script: set
+  displayName: show variables
+
+- script: dotnet restore
+  displayName: dotnet restore
+
+- script: dotnet build --configuration $(buildConfiguration) --no-restore
+  displayName: build
+
+- task: DotNetCoreCLI@2
+  displayName: test
+  inputs:
+    command: test
+    projects: '**/*tests/*.csproj'
+    arguments: '--configuration $(buildConfiguration)'

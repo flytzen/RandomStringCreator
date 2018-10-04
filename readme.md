@@ -2,6 +2,10 @@ This package generates random strings that can be used for things like IDs or un
 
 It uses crypto APIs, not Random, to avoid any risk of the same string being returned from concurrent invocations, thus making it more suitable for use where you need a higher probability of uniqueness. 
 
+# Build status
+[![Build Status](https://dev.azure.com/flytzen/RandomStringCreator/_apis/build/status/flytzen.RandomStringCreator?branchName=master)](https://dev.azure.com/flytzen/RandomStringCreator/_build/latest?definitionId=1)
+
+
 # Installation
 ```
 Install-Package Install-Package RandomStringCreator
