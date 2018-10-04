@@ -8,8 +8,7 @@
     <PackageId>RandomStringCreator</PackageId>
     <PackageProjectUrl>https://github.com/flytzen/RandomStringCreator</PackageProjectUrl>
     <RepositoryUrl>https://github.com/flytzen/RandomStringCreator</RepositoryUrl>
-    <Version>1.1.0</Version>
-    <VersionPrefix>1.1.0</VersionPrefix>
+    <VersionPrefix>2.0.0</VersionPrefix>
     <VersionSuffix></VersionSuffix>
     <VersionSuffix Condition=" '$(Configuration)' == 'Debug' ">debug</VersionSuffix> <!-- For local/debug builds -->
     <VersionSuffix Condition=" '$(Build_SourceBranch)' == 'refs/heads/develop' ">pre.$(Build_BuildID)</VersionSuffix> <!-- This is using variables that are specific to Azure Dev Ops Pipelines -->
