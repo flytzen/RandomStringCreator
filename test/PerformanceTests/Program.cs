@@ -1,11 +1,12 @@
-﻿namespace PerformanceTests
+﻿using System;
+using RandomStringCreator;
+
+namespace Perftest2
 {
     using BenchmarkDotNet.Attributes;
     using BenchmarkDotNet.Running;
 
-    using RandomStringCreator;
-
-    public class Program
+    class Program
     {
         public static void Main(string[] args)
         {
@@ -16,8 +17,11 @@
     public class GenerationTests
     {
         private StringCreator standardGenerator = new StringCreator();
+
         private StringCreator buffer1024Generator = new StringCreator(1024);
+
         private StringCreator buffer4096Generator = new StringCreator(4096);
+
         private StringCreator buffer100000Generator = new StringCreator(100000);
 
         public GenerationTests()
@@ -33,34 +37,34 @@
         [Benchmark]
         public string GenerateIndividually()
         {
-           return new StringCreator().Get(6);
+            return new StringCreator().Get(6);
         }
 
         [Benchmark]
         public string GenerateIndividuallyWithUsing()
         {
-           using (var generator = new StringCreator()) 
-           {
+            using (var generator = new StringCreator())
+            {
                 return generator.Get(6);
-           }
+            }
         }
 
         [Benchmark]
         public string GenerateWithSharedInstanceWithDefaultBuffer()
         {
-           return this.standardGenerator.Get(6);
+            return this.standardGenerator.Get(6);
         }
 
         [Benchmark]
         public string GenerateWith1024Buffer()
         {
-           return this.buffer1024Generator.Get(6);
+            return this.buffer1024Generator.Get(6);
         }
 
         [Benchmark]
         public string GenerateWith4096Buffer()
         {
-           return this.buffer4096Generator.Get(6);
+            return this.buffer4096Generator.Get(6);
         }
 
         [Benchmark]
