@@ -27,11 +27,11 @@ will only return strings with lowercase letters. Similarly, you could add punctu
 
 # Performance
 The implementation uses Windows or OpenSSL Crypto APIs (see Implementation). Ideally you should cache one instance of RandomStringCreator and use it throughout, though the actual performance impact on this is very minimal so you probably don't want to bother unless you do this a lot.
-On my i7 laptop, using BenchmarkDotNet (included in the repo), you are looking at ~14 nano seconds to get a string if you just create a StringCreator and call Get. If you cache the one instance, you save about one nano second per invocation. Other .NET frameworks and environments may vary.
+On my i7 laptop, using BenchmarkDotNet (included in the repo), you are looking at ~14 micro seconds to get a string if you just create a StringCreator and call Get. If you cache the one instance, you save about one micro second per invocation. Other .NET frameworks and environments may vary.
 One good reason for caching the single instance is that it *does* call into underlying Windows or OpenSSL APIs so minimising the number of external invokes is probably a good idea.
 
 ## Buffer Size
-The constructor allows you to specify a buffer size; the implementation uses a Crypto API method to get an array of random bytes. By default, it will only get 128 bytes at a time. If you are caching a shared instance and generating a lot of strings, it is probably a good idea to increase the buffer size to 1024, 2048 or more, depending on your needs. In the benchmarks it makes a very small difference, on the order of 0.1 nano seconds per invocation, but a larger buffer does reduce the number of calls to the underlying APIs.
+The constructor allows you to specify a buffer size; the implementation uses a Crypto API method to get an array of random bytes. By default, it will only get 128 bytes at a time. If you are caching a shared instance and generating a lot of strings, it is probably a good idea to increase the buffer size to 1024, 2048 or more, depending on your needs. In the benchmarks it makes a very small difference, on the order of 0.1 micro seconds per invocation, but a larger buffer does reduce the number of calls to the underlying APIs.
 
 ## Initialisation
 The generator uses lazy instantion of its dependency (a crypto API), meaning you can safely instantiate or inject the class without worrying about any performance implications when you end up not actually generating a string. 
